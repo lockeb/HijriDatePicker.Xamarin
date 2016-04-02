@@ -23,7 +23,7 @@ namespace HijriDatePicker.Library
         private CalendarInstance calendarInstance;
         private string[] days;
         private TableRow daysHeader;
-        private TextView dayTextView, monthTextView, yearTextView;
+        private TextView dayTextView, monthTextView, yearTextView, lastSelectedDay;
         private Button doneButton, cancelButton;
         private TableLayout tableLayout;
         private List<TextView> textViewList;
@@ -60,14 +60,17 @@ namespace HijriDatePicker.Library
             var temp = (TextView) v;
             if (!string.IsNullOrEmpty(temp.Text))
             {
-                dayTextView.SetTextColor(Color.DarkGray);
-                dayTextView.SetBackgroundColor(Color.Transparent);
+                if (lastSelectedDay != null)
+                {
 
+                    lastSelectedDay.SetTextColor(Color.DarkGray);
+                    lastSelectedDay.SetBackgroundColor(Color.Transparent);
+                }
 
-                dayTextView.SetBackgroundColor(
+                temp.SetBackgroundColor(
                     new Color(ContextCompat.GetColor(_context, Resource.Color.hijri_date_picker_accent_color)));
-                dayTextView.SetTextColor(Color.White);
-                //dayTextView = temp;
+                temp.SetTextColor(Color.White);
+                lastSelectedDay = temp;
                 dayTextView.Text = temp.Text;
                 calendarInstance.setDay(Integer.ParseInt(temp.Text));
             }
@@ -266,7 +269,7 @@ namespace HijriDatePicker.Library
                         textView.SetBackgroundColor(
                             new Color(ContextCompat.GetColor(_context, Resource.Color.hijri_date_picker_accent_color)));
                         textView.SetTextColor(Color.White);
-                        dayTextView = textView;
+                        lastSelectedDay = textView;
                     }
                     textViewList.Add(textView);
                     row.AddView(textView);
