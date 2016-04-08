@@ -89,7 +89,7 @@ namespace HijriDatePicker.Library.Calendar
 
 		public void setDay(int day)
 		{
-			_currentHijriDateTime = new DateTime(_countYear, _countMonth, day);
+			_currentHijriDateTime = new DateTime(_countYear, _countMonth  + 1, day);
 
             CultureInfo arSA = new CultureInfo("ar-SA");
             arSA.DateTimeFormat.Calendar = new UmAlQuraCalendar();

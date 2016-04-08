@@ -62,7 +62,6 @@ namespace HijriDatePicker.Library
             {
                 if (lastSelectedDay != null)
                 {
-
                     lastSelectedDay.SetTextColor(Color.DarkGray);
                     lastSelectedDay.SetBackgroundColor(Color.Transparent);
                 }
@@ -183,8 +182,7 @@ namespace HijriDatePicker.Library
         {
             var locale = new Locale(langCode);
             Locale.Default = locale;
-            var config = new Configuration();
-            config.Locale = locale;
+            var config = new Configuration {Locale = locale};
             _context.Resources.UpdateConfiguration(config, _context.Resources.DisplayMetrics);
             OnCreate(null);
         }
